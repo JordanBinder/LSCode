@@ -20,9 +20,6 @@ Questions:
 What kind of loop might be good for this question (if any)?
 
 
-Can this be made easier/more readable by breaking it up into more functions?
-
-
 E - do a test case to see if everything is working
 
 D - What kind of data structures will you need to create or manipulate to create working function?
@@ -42,3 +39,8 @@ Question:
 
 
 */
+
+function isPalindromicNumber(number) {
+  let stringNum = String(number);
+  return stringNum === stringNum.split('').reverse().join('');
+}
