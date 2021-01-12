@@ -107,7 +107,7 @@ console.log(timeOfDay(65));
 */
 
 // my best attempt before looking at LS solution. This works for positive integer's only.
-/*
+
 function timeOfDay(num) {
   let hr = 0;
   let min = 0;
@@ -121,20 +121,20 @@ function timeOfDay(num) {
   }
 
 function formatDate(hr, min) {
-  hr.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
-  min.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
+    hr.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
+    min.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
 
-  console.log(`${hr}:${min}`)
+    console.log(`${hr}:${min}`)
 }
 
   formatDate(hr, min);
 }
-*/
+
 
 // my solution is actually not bad. Only real problem is not accounging for negative integers.
 
 // LS Solution
-
+/*
 const MINUTES_PER_HOUR = 60;
 const HOURS_PER_DAY = 24;
 const MINUTES_PER_DAY = HOURS_PER_DAY * MINUTES_PER_HOUR;
@@ -160,6 +160,7 @@ function timeOfDay(deltaMinutes) {
   return formatTime(hours, minutes);
 }
 
+*/
 console.log(timeOfDay(0));// "00:00");
 console.log(timeOfDay(-3));// "23:57");
 console.log(timeOfDay(35));// "00:35");
