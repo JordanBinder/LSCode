@@ -5,6 +5,12 @@ const HUMAN_MARKER = 'X';
 const COMPUTER_MARKER = 'O';
 const MATCH_COMPLETED = 3;
 
+let WINNING_LINES = [
+  [1, 2, 3], [4, 5, 6], [7, 8, 9], // rows
+  [1, 4, 7], [2, 5, 8], [3, 6, 9], // columns
+  [1, 5, 9], [3, 5, 7]             // diagonals
+];
+
 function prompt(msg) {
   console.log(`=> ${msg}`);
 }
@@ -72,11 +78,35 @@ function playerChoosesSquare(board) { // marks an X on the board
   board[square] = HUMAN_MARKER;
 }
 
+function findAtRiskSquare(line, board) { // returning null (falsy val) if no player threat. Otherwise, returning empty string (truthy val).
+  let markersInLine = line.map(square => board[square]);
+
+  if (markersInLine.filter(val => val === HUMAN_MARKER).length === 2) {
+    let unusedSquare = line.find(square => board[square] === INITIAL_MARKER);
+    if (unusedSquare !== undefined) {
+      return unusedSquare;
+    }
+  }
+
+  return null;
+}
+
 function computerChoosesSquare(board) { // marks an O on the board
-  let randomIndex = Math.floor(Math.random() * emptySquares(board).length);
-  let square = emptySquares(board)[randomIndex];
+  let square;
+  for (let index = 0; index < WINNING_LINES.length; index++) {
+    let line = WINNING_LINES[index];
+    square = findAtRiskSquare(line, board);
+    if (square) break;
+  }
+
+  if (!square) {
+    let randomIndex = Math.floor(Math.random() * emptySquares(board).length);
+    square = emptySquares(board)[randomIndex];
+  }
+
   board[square] = COMPUTER_MARKER;
 }
+
 
 function boardFull(board) {
   return emptySquares(board).length === 0;
@@ -89,14 +119,8 @@ function someoneWon(board) {
 // eslint-disable-next-line max-lines-per-function
 function detectWinner(board) {
 
-  let winningLines = [
-    [1, 2, 3], [4, 5, 6], [7, 8, 9], // rows
-    [1, 4, 7], [2, 5, 8], [3, 6, 9], // columns
-    [1, 5, 9], [3, 5, 7]             // diagonals
-  ];
-
-  for (let line = 0; line < winningLines.length; line++) {
-    let [ sq1, sq2, sq3 ] = winningLines[line];
+  for (let line = 0; line < WINNING_LINES.length; line++) {
+    let [ sq1, sq2, sq3 ] = WINNING_LINES[line];
 
     if (
       board[sq1] === HUMAN_MARKER &&
@@ -171,7 +195,7 @@ while (true) {
     // currentPlayer = firstMover;
   } else if (score.humanScore === MATCH_COMPLETED) prompt(`YOU WON the match!\n`);
   else prompt(`COMPUTER WON the match!\n`);
-  // note to self, looked at fellow LS Student Dominic Parker for
+  // note: looked at fellow LS Student Dominic Parker for
   // understanding how to do this.
   // above if statement was his idea.
 
