@@ -93,10 +93,18 @@ function findAtRiskSquare(line, board, marker) { // returning null (falsy val) i
 
 function computerChoosesSquare(board) { // marks an O on the board
   let square;
-  for (let index = 0; index < WINNING_LINES.length; index++) {
+  for (let index = 0; index < WINNING_LINES.length; index++) { // defensive move by comp
     let line = WINNING_LINES[index];
     square = findAtRiskSquare(line, board);
     if (square) break;
+  }
+
+  if (!square) { // offensive move by comp
+    for (let index = 0; index < WINNING_LINES.length; index++) {
+      let line = WINNING_LINES[index];
+      square = findAtRiskSquare(line, board, COMPUTER_MARKER);
+      if (square) break;
+    }
   }
 
   if (!square) {
