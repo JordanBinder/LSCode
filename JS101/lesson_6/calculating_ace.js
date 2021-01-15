@@ -42,12 +42,6 @@ C - code
 
 Question:
 
-Calculating Aces. Remember that Aces can be worth either 1 or 11,
-depending on context.
-You shouldn't ask the player what the value of each Ace is; your program
-should be able to figure that out automatically.
-
-
 
 */
 
