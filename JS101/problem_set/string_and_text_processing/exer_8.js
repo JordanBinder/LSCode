@@ -8,9 +8,9 @@ C -Code
 
 /*
 P -
-Input:
+Input: string
 
-Output:
+Output: array of strings
 
 Explicit requirements:
 
@@ -33,7 +33,12 @@ A - algorithm
 
 First, high level:
 
+create result array
+split input string by space so we get array of words
+map function with param word
+  return word, a space, and length of word
 
+return new array made my map
 Second, pseudocode:
 
 
@@ -52,19 +57,49 @@ separated by a single space.
 
 */
 
-function wordLengths() {}
+function wordLengths(string) {
+  if (string.length === 0) {
+    return [];
+  }
+  let array = string.split(" ");
 
-wordLengths('cow sheep chicken');
+  let resultArray = array.map(word => {
+    return word + " " + String(word.length);
+  });
+
+  return resultArray;
+}
+
+console.log(wordLengths('cow sheep chicken'));
 // ["cow 3", "sheep 5", "chicken 7"]
 
-wordLengths('baseball hot dogs and apple pie');
+console.log(wordLengths('baseball hot dogs and apple pie'));
 // ["baseball 8", "hot 3", "dogs 4", "and 3", "apple 5", "pie 3"]
 
-wordLengths("It ain't easy, is it?");
+console.log(wordLengths("It ain't easy, is it?"));
 // ["It 2", "ain't 5", "easy, 5", "is 2", "it? 3"]
 
-wordLengths('Supercalifragilisticexpialidocious');
+console.log(wordLengths('Supercalifragilisticexpialidocious'));
 // ["Supercalifragilisticexpialidocious 34"]
 
-wordLengths('');      // []
-wordLengths();        // []
+console.log(wordLengths(''));      // []
+console.log(wordLengths());        // []
+
+/*
+Only big difference between me and LS was I
+didn't include arguments.length === 0 || from line 61
+My code still runs and gets me the correct outcome, but
+I don't understand why it's throwing an error
+when arguments.length === 0 || isn't present.
+
+The error:
+TypeError: Cannot read property 'length' of undefined
+    at wordLengths (/Users/jordanchandlerbinder/Documents/LS_Code/LS/JS101/problem_set/string_and_text_processing/exer_8.js:61:14)
+    at Object.<anonymous> (/Users/jordanchandlerbinder/Documents/LS_Code/LS/JS101/problem_set/string_and_text_processing/exer_8.js:86:13)
+    at Module._compile (internal/modules/cjs/loader.js:1135:14)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1158:10)
+    at Module.load (internal/modules/cjs/loader.js:986:32)
+    at Function.Module._load (internal/modules/cjs/loader.js:879:14)
+    at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:71:12)
+    at internal/main/run_main_module.js:17:47
+*/

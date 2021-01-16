@@ -75,6 +75,7 @@ const DEALER_HAND = [];
 const SUIT = ['H', 'D', 'S', 'C'];
 const CARD_NUMBER = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K', 'A'];
 const READLINE = require('readline-sync');
+const INITIAL_HAND_SIZE = 2;
 
 function prompt(message) {
   console.log(`=> ${message}`);
@@ -102,13 +103,17 @@ function shuffleCards(array) {
   return array;
 }
 
-function dealPlayer(deck) {
-
+function dealPlayer(deck) { //pushes two cards to const PLAYER_HAND and returns const
+  for (let idx = 0; idx <= INITIAL_HAND_SIZE; idx++) {
+    PLAYER_HAND.push(deck[idx]);
+  }
   return PLAYER_HAND;
 }
 
-function dealDealer(deck) {
-
+function dealDealer(deck) { //pushes two cards to const PLAYER_HAND and returns const
+  for (let idx = 0; idx <= INITIAL_HAND_SIZE; idx++) {
+    DEALER_HAND.push(deck[idx]);
+  }
   return DEALER_HAND;
 }
 

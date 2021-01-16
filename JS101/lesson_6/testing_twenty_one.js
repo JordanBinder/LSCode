@@ -80,3 +80,5 @@ function dealDealer(deck) { //pushes two cards to const PLAYER_HAND and returns 
   }
   return DEALER_HAND;
 }
+
+console.log(dealPlayer(deck));
