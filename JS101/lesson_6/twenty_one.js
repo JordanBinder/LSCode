@@ -70,8 +70,7 @@ King
 Ace
 */
 
-const PLAYER_HAND = [];
-const DEALER_HAND = [];
+
 const SUIT = ['H', 'D', 'S', 'C'];
 const CARD_NUMBER = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K', 'A'];
 const READLINE = require('readline-sync');
@@ -151,15 +150,37 @@ function displayResult() {
 }
 
 while (true) {
+  prompt('Welcome to Twenty-One!');
+  // initialize vars and deck
+  let playerHand = [];
+  let dealerHand = [];
+  let deck = initializeDeck(); // this gives us a shuffled deck
 
-  initializeDeck();
-  shuffleCards();
+  // deal cards
 
+  // player turn
   playerTurn();
-
+  // dealer turn
   dealerTurn();
-
+  // show result
   displayResult();
-
+  // ask and receieve input to play again
   prompt(`Play again?`);
 }
+
+/*
+This is what I got before turning to LS Solution.
+
+Lessons learned:
+
+player and dealer hand should be local variables.
+That way they can be reset upon "play again" "y"
+
+One function to create "strings" and another with a switch stmt
+is a great way to show certain outcomes of the game
+aka "dealer busting"
+aka "player busting"
+aka "tie"
+
+
+*/
