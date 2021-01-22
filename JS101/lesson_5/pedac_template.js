@@ -42,5 +42,14 @@ C - code
 
 Question:
 
+Notes:
+
 */
 
+function StrawberrySalad() {
+
+}
+
+/* Postmortem:
+
+*/
