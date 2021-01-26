@@ -78,22 +78,22 @@ function minilang(inputText) {
         register += stack.pop();
         break;
       case 'SUB':
-        ___
+        register -= stack.pop();
         break;
       case 'MULT':
-        ___
+        register *= stack.pop();
         break;
       case 'DIV':
-        ___
+        register = Math.floor((register / stack.pop()));
         break;
       case 'MOD':
-        ___
+        register = Math.floor(register % stack.pop());
         break;
       case 'POP':
-        ___
+        register = stack.pop();
         break;
       case 'PRINT':
-        ___
+        console.log(register);
         break;
       default:
         register = Number(token);
@@ -134,6 +134,14 @@ minilang('-3 PUSH 5 SUB PRINT');
 
 minilang('6 PUSH');
 // (nothing is printed because the `program` argument has no `PRINT` commands)
-/* Postmortem:
 
+/* Postmortem:
+Once I realized a switch statement was the option, this problem became pretty
+understandable and not as complicated as it looked.
+
+I needed to look at some of the functions LS
+provided because I made silly errors, but on the whole I understood this
+problem.
+
+I originally needed help realizing a forEach was the best option.
 */
