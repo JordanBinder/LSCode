@@ -61,7 +61,7 @@ function fibonacci(count) {
   if (count === 1) {
     return 1;
   }
-  for (let idx = 3; idx <= count; idx++) {
+  for (let idx = 1; idx <= count; idx++) {
     third = first + second;
     first = second;
     second = third;
@@ -75,11 +75,20 @@ console.log(fibonacci(2));
 console.log(fibonacci(3));
 console.log(fibonacci(4));
 console.log(fibonacci(5));
-// fibonacci(20);       // 6765
-// fibonacci(50);       // 12586269025
+console.log(fibonacci(6));
+console.log(fibonacci(7));
+console.log(fibonacci(19));
+console.log(fibonacci(49));
+
+// fibonacci(20);       // 6765 **** my solution reaches this at fibonacci(19) ****
+// fibonacci(50);       // 12586269025 **** my solution reaches this at fibonacci(49) ****
 // fibonacci(75);       // 2111485077978050
 /* Postmortem:
 
-I'm all sorts of confused as to the original question.
-why nth - 2? Why is the input to fibonacci(5) not 13?
+why nth - 2?
+
+Does my solution count as procedural?
+
+Why do I not get 1 for the first two values but afterwards
+get the correct sequence of nums? How can I fix that?
 */

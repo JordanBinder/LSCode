@@ -41,30 +41,51 @@ C - code
 
 
 Question:
-Write a recursive function that computes the nth Fibonacci number,
-where nth is an argument passed to the function.
 
-NOTE: This exercise verges on the Advanced level of exercises,
-so do not be discouraged if you are not able to solve it on your own;
-recursion is tricky,
-and even experienced developers can have difficulty dealing with it.
+For this exercise, your objective is to refactor the recursive fibonacci
+function to use memoization.
 
 Notes:
 
 */
 
+// function fibonacci(nth) {
+//   let first = 1;
+//   let second = 1;
+//   let third = first + second;
+
+//   if (nth === 1 || nth === 2) {
+//     return 1;
+//   }
+//   return (first + second) * fibonacci(nth - 1);
+// }
+
+// function fibonacci(nth) {
+//   let fibObj = {
+//     key: val,
+//     pizza: walnuts,
+
+//   }
+//   let fibOne = fibonacci(nth - 1);
+//   let fibTwo = fibonacci(nth - 2);
+//   if (nth <= 2) {
+//     return 1;
+//   }
+//   return fibOne + fibTwo;
+// }
+
+// LS Solution:
+let memo = {};
 function fibonacci(nth) {
-  let first = 1;
-  let second = 1;
-  let third = first + second;
-
-  if (nth === 1 || nth === 2) {
+  if (nth <= 2) {
     return 1;
+  } else if (memo[nth]) {
+    return memo[nth];
+  } else {
+    memo[nth] = fibonacci(nth - 1) + fibonacci(nth - 2);
+    return memo[nth];
   }
-  return (first + second) * fibonacci(nth - 1);
 }
-
-
 
 fibonacci(1);       // 1
 fibonacci(2);       // 1
@@ -74,16 +95,7 @@ console.log(fibonacci(5));       // 5
 fibonacci(12);      // 144
 fibonacci(20);      // 6765
 
+// memoization ex: 
 /* Postmortem:
-The above was honestly a guess. LS Solution:
 
-function fibonacci(nth) {
-  if (nth <= 2) {
-    return 1;
-  }
-  return fibonacci(nth - 1) + fibonacci(nth - 2);
-}
-
-Genuinely don't know how I could have come up with this. Will
-be reading the provided material and watching tutorials tonight.
 */
