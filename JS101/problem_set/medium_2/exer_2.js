@@ -138,14 +138,13 @@ console.log(triangle(3, 1, 1));        // "invalid"
 
       break;
     case 'scalene':
-      
       break;
   }
 
   Did everything on my own except the if/else conditions. I just had a brainfart
-  and didn't know what to put there but it was quite ovbious. 
+  and didn't know what to put there but it was quite ovbious.
 
-  I liked this problem. My code feels inelegant though. 
+  I liked this problem. My code feels inelegant though.
 
   I originally thought to use a switch stmt but my function
   didn't work with it. I am a bit confused about what goes into a switch
