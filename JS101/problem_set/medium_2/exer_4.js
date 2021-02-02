@@ -57,9 +57,15 @@ Notes:
 */
 
 function fridayThe13ths(year) {
-  const FIRST_DATE = new Date(year);
-  
-  return FIRST_DATE.getDate();
+  let thirteenths = [];
+
+  for (let month = 0; month < 12; month += 1) {
+    thirteenths.push(new Date(year, month, 13));
+  }
+
+  return thirteenths.reduce((count, day) => {
+    return day.getDay() === 5 ? (count + 1) : count;
+  }, 0);
 }
 
 console.log(fridayThe13ths(1986));      // 1
@@ -67,5 +73,12 @@ fridayThe13ths(2015);      // 3
 fridayThe13ths(2017);      // 2
 
 /* Postmortem:
+I could not do this question on my own. My big issues were being unaccustomed to both the Date methods
+and not feeling confident in using the reducer method. Both of those feelings need to be fixed and I need
+to get comfortable with them. I could not figure out the first part of this algorithm (use Date constructor)
+to get a desired outcome.
 
+I also think I just didn't think long or hard enough on the problem. That is a focus and diligence
+fault I need to continue to fight. Engingeering is about getting these things right and paying
+close attention.
 */
